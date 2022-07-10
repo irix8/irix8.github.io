@@ -1,0 +1,178 @@
+<!DOCTYPE html >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="noindex, nofollow" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script language="javascript" src="//check.7m.com.cn/acpl.aspx"></script>
+<script language="javascript" src="//1x2.7m.com.cn/js/open_link.js"></script>
+<script language="javascript" src="//1x2.7m.com.cn/js/const/kr.js?v=20180607"></script>
+<script language="javascript" src="//1x2.7m.com.cn/data/index_kr.js" id="spdt"></script>
+<script type="text/javascript"  src="//timezone.lucksport.com/timezone.js"></script>
+<script type="text/javascript"  src="//timezone.lucksport.com/gettimezone.php"></script>
+<script language="javascript" src="//1x2.7m.com.cn/timezone/timezone.js"></script>
+<script language="javascript" src="//1x2.7m.com.cn/data/com_kr.js"></script>
+<script language="javascript" src="//1x2.7m.com.cn/data/todaycom.js"></script>
+<script language="javascript" src="//1x2.7m.com.cn/js/default.js"></script>
+<script language="javascript" src="//1x2.7m.com.cn/js/buildercompany.js?v=20180607"></script>
+<script language="javascript" src="//1x2.7m.com.cn/include/menu_kr.js?v=20180620"></script>
+
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+
+<script type="text/javascript">
+
+
+function updateTimeZone(data)
+{
+	eval("var dataObj = " + data);
+	timeZoneData["TZ"] = dataObj["TZ"];
+	timezone_TZ = dataObj["TZ"];
+	document.getElementById("TimeZone").innerHTML = "GMT"+timeZoneData["TZ"];
+	BuilderTable();
+}
+</script>
+
+</head>
+
+<body>
+<button type="button" id="excelDownload" class="download">엑셀파일 다운로드</button>
+<script>
+const excelDownload = document.querySelector('#excelDownload');
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    excelDownload.addEventListener('click', exportExcel);
+});
+
+function exportExcel(){ 
+  // step 1. workbook 생성
+  var wb = XLSX.utils.book_new();
+
+  // step 2. 시트 만들기 
+  var newWorksheet = excelHandler.getWorksheet();
+
+  // step 3. workbook에 새로만든 워크시트에 이름을 주고 붙인다.  
+  XLSX.utils.book_append_sheet(wb, newWorksheet, excelHandler.getSheetName());
+
+  // step 4. 엑셀 파일 만들기 
+  var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+
+  // step 5. 엑셀 파일 내보내기 
+  saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), excelHandler.getExcelFileName());
+}
+
+var excelHandler = {
+    getExcelFileName : function(){
+        return 'table-test.xlsx';	//파일명
+    },
+    getSheetName : function(){
+        return 'Table Test Sheet';	//시트명
+    },
+    getExcelData : function(){
+        return document.getElementById('tableData'); 	//TABLE id
+    },
+    getWorksheet : function(){
+        return XLSX.utils.table_to_sheet(this.getExcelData());
+    }
+}
+
+function s2ab(s) { 
+  var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+  var view = new Uint8Array(buf);  //create uint8array as viewer
+  for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
+  return buf;    
+}  
+</script>
+
+<table border="0" cellpadding="0" cellspacing="0" width="778">
+	<tr>
+		<td bgcolor="#FFFFFF">&nbsp;<span id="TimeZone" title="Set time zone" style="cursor:pointer; color:#000000; font-weight: bold;white-space:nowrap;" onClick="setTimeZone('kr','timezone.html',updateTimeZone);"></span><span><img src="//img.7m.com.cn/img2/timezone.gif" title="Set time zone" border="0" style="cursor:pointer" onClick="setTimeZone('kr','timezone.html',updateTimeZone);"></span></td>
+		<td width="100%" class="ltms1"><script language="javascript">SelLanguage();</script></td>
+	</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" width="778">
+	<tr>
+		<td height="1" bgcolor="#111155" colspan="2"></td>
+	</tr>
+	<tr height="50">
+		<td width="160" align="center"><img src="" border="0"></td>
+		<td width="618" align="center" id="Head_ad"></td>
+	</tr>
+</table>
+<div style="width:778px"><script>WriteMenu("odds");</script></div>
+<table border="0" cellpadding="0" cellspacing="0" width="778" class="tb1"  id="tableData">
+	<tr>
+		<td valign="top" width="180" class="lml1">
+			<div class="lt1">승률 보기(알파벳순)</div>
+			<script language="javascript">BuilderCompany('');</script>
+			<div class="tip1"> " <img src="//img.7m.com.cn/boimg/s1.gif" border="0"> "를 클릭하면 더 많은 승률을 볼 수 있습니다.</div>
+			<div class="l_banner" id="Left_ad"></div>
+		</td>
+		<td valign="top" width="598" style="background: #EEE;">
+			<table border="0" cellpadding="0" cellspacing="0" width="598" class="lotb1">
+				<tr>
+					<td width="60%" class="lotbs0"><span class="dot1">평균 데이터</span></td>
+					<td width="40%" class="lotbs1" height="24"><a href="https://1x2.7mkr.com/played_kr.shtml" target="_top"><img src="//img.7m.com.cn/img8/1x2but2_kr.gif" border="0"></a>&nbsp;&nbsp;<a href="https://1x2.7mkr.com/result_kr.shtml" target="_top"><img src="//img.7m.com.cn/img8/1x2but3_kr.gif" border="0"></a></td>
+				</tr>
+			</table>
+			<table border="0" cellpadding="2" cellspacing="0" width="598">
+				<tr>
+					<td height="4"></td>
+				</tr>
+				<!--tr>
+					<td align="center" style="border: 1px solid #FFA600; background: #FFFFCC; line-height: 17px; font-size: 12px;">본 페이지는 테스트중이므로 <a href="javascript:" onClick='window.open("https://help.7m.com.cn/jump.aspx?l=kr&page=sentmessage&t=0","","width=450,height=460,scrollbars=yes");'>의견</a>을 많이 제기해 주시기 바랍니다.
+					</td>
+				</tr-->
+				<tr>
+					<td height="4"></td>
+				</tr>
+			</table>
+			<div id="odds_tb"></div>
+			<script language="javascript">BuilderTable();</script>
+			<br><div class="tip1">비고: 첫째 줄은 평균 처음승률이며, 둘째 줄은 평균 스폿승률입니다.</div><br>
+			<div id="Bottom_ad"></div><br>
+		</td>
+	</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" id="leftmove" style="position:absolute;visibility: visible;z-index:100" class="noprint"><tr><td></td></tr></table>
+<table border="0" cellpadding="0" cellspacing="0" id="rightmove" style="position: absolute;visibility: visible;z-index:200" class="noprint"><tr><td></td></tr></table>
+<table border="0" cellpadding="2" cellspacing="0" width="778" bgcolor="#FFFFFF" class="noprint" style="font-size:12px">
+  <tr>
+    <td width="100%" height="2" bgcolor="#eeeeee" colspan="3"></td>
+  </tr>
+  <tr>
+  	<td colspan="3">
+  		<link href="//1x2.7m.com.cn/js/nav/nav_style.css" rel="stylesheet" type="text/css" />
+		<script language="javascript" href="//1x2.7m.com.cn/js/nav/ql_kr.js"></script>
+		<script language="javascript">writeNav();</script>
+	</td>
+  </tr>
+  <tr>
+  	<td width="18%" align="center"></td>
+    <td width="64%" height="40" align="center" valign="top">
+    
+    </td>
+    <td width="18%"></td>
+  </tr>
+</table>
+
+
+</body>
+
+</html>
+<script language="javascript" src="//static-services.7msport.com/clientlink/?l=kr&s=BF&t=1x2_default"></script>
+
+<div style="display:none">
+<script type="text/javascript" id="countObj" src="//count.7m.com.cn/count.js?lang=kr"></script>
+</div>
+
+<!-- Sheet JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+<!--FileSaver savaAs 이용 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+
+
+
+
